@@ -1,0 +1,121 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-gray-950 ">
+
+    <!-- navber -->
+     <div class="w-[1400px] mx-auto my-4 p-8 flex justify-center items-center hover:bg-neutral-800
+      border-2 border-solid  bg-zinc-900 inset-shadow-sm inset-shadow-amber-300 rounded-2xl shadow-amber-500/30 shadow-lg">
+        <h1 class="font-serif text-3xl font-bold text-amber-500 ">Organizer Dashboard</h1>
+     </div>
+
+     <!-- grit -->
+     <section class="w-[1000px] mx-auto my-10  grid grid-cols-3  gap-10">
+
+        <div class="w-[300px] h-[100px] bg-zinc-900 rounded-2xl p-4 shadow-amber-500/30 shadow-lg hover:bg-neutral-800">
+            <h1 class="font-serif text-2xl font-bold text-amber-400 flex justify-center">Total Participants</h1>
+            <h1 class=" text-2xl font-bold text-amber-400 flex justify-center">{{countt.total}}</h1>
+
+        </div>
+
+          <a href="{% url 'Dashboard' %}?type=Total Events">
+         <div class="w-[300px] h-[100px] bg-zinc-900 rounded-2xl p-4 shadow-amber-500/30 shadow-lg hover:bg-neutral-800">
+            <h1 class="font-serif text-2xl font-bold text-amber-400 flex justify-center ">Total Events</h1>
+            <h1 class=" text-2xl font-bold text-amber-400 flex justify-center">{{counts.total}}</h1>
+
+        </div>
+         </a>
+
+
+        <a href="{% url 'Dashboard' %}?type=UPcoming Events">
+         <div class="w-[300px] h-[100px] bg-zinc-900 rounded-2xl p-4 shadow-amber-500/30 shadow-lg hover:bg-neutral-800">
+            <h1 class="font-serif text-2xl font-bold text-amber-400 flex justify-center">UPcoming Events</h1>
+            <h1 class=" text-2xl font-bold text-amber-400 flex justify-center">{{counts.upcoming}}</h1>
+
+        </div>
+      </a>
+
+
+          <a href="{% url 'Dashboard' %}?type=Past Events">
+         <div class="w-[300px] h-[100px] bg-zinc-900 rounded-2xl p-4 shadow-amber-500/30 shadow-lg hover:bg-neutral-800">
+            <h1 class="font-serif text-2xl font-bold text-amber-400 flex justify-center">Past Events</h1>
+            <h1 class=" text-2xl font-bold text-amber-400 flex justify-center">{{counts.past}}</h1>
+
+        </div>
+        </a>
+
+
+         <a href="{% url 'Dashboard' %}?type=Todays Events">
+         <div class="w-[300px] h-[100px] bg-zinc-900 rounded-2xl p-4 shadow-amber-500/30 shadow-lg hover:bg-neutral-800">
+            <h1 class="font-serif text-2xl font-bold text-amber-400 flex justify-center">Todays Events</h1>
+            <h1 class=" text-2xl font-bold text-amber-400 flex justify-center">{{counts.todays}}</h1>
+
+        </div>
+        </a>
+
+     </section>
+
+
+
+     <section class="w-[1400px] mx-auto my-10">
+      
+
+            <div class="grid grid-cols-4 gap-6 w-[1000px] mx-auto py-4">
+                <h1 class="font-serif text-2xl font-bold text-amber-400 bg-neutral-800 rounded-2xl p-1 flex justify-center
+                 hover:bg-neutral-700">Event Title</h1>
+                <h1 class="font-serif text-2xl font-bold text-amber-400 bg-neutral-800 rounded-2xl p-1 flex justify-center
+                 hover:bg-neutral-700">Location</h1>
+                <h1 class="font-serif text-2xl font-bold text-amber-400 bg-neutral-800 rounded-2xl p-1 flex justify-center
+                 hover:bg-neutral-700">Time</h1>
+                <h1 class="font-serif text-2xl font-bold text-amber-400 bg-neutral-800 rounded-2xl p-1 flex justify-center
+                 hover:bg-neutral-700">catagory</h1>
+
+            </div>
+            <div class="grid grid-cols-4 gap-6 w-[1000px] mx-auto py-4">
+               {% if events %}
+    
+                 {% for event in events %}
+                <h1 class="font-serif text-xl font-bold text-amber-400 flex justify-center ">{{event.name}}</h1>
+                <h1 class="font-serif text-xl font-bold text-amber-400  flex justify-center">{{event.location}}</h1>
+                <h1 class="font-serif text-xl font-bold text-amber-400  flex justify-center">{{event.time|time:"H:i"}}</h1>
+                <h1 class="font-serif text-xl font-bold text-amber-400  flex justify-center
+                ">{{event.catagory}}</h1>
+                 {% endfor %}
+        
+                {% else %}
+                <h1 class="font-serif text-xl font-bold text-amber-400 flex justify-center "> ...NO EVENTS AVAILABLE...</h1>
+
+               {% endif %}
+              
+
+                
+                
+                
+               
+                
+
+
+            </div>
+
+
+     </section>
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

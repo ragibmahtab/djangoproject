@@ -1,0 +1,90 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search Details</title>
+   <link href="{% static "css/output.css" %}" rel="stylesheet">
+</head>
+
+<body class="bg-gray-950 ">
+    
+<!-- navber -->
+    <div class="flex justify-between items-center  p-8 max-w-[1400px] mx-auto my-4 border-2 border-solid border-black bg-zinc-800 inset-shadow-sm inset-shadow-amber-300">
+        <div class="antialiased italic font-bold w-[700px] underline text-2xl text-amber-400 hover:text-teal-400 cursor-pointer">
+          <h1>ELLUMINATE</h1>
+
+        </div>
+        <div class="flex justify-end  text-xl w-[700px] items-end cursor-pointer">
+          <div class="mx-2 text-amber-200 hover:text-teal-100">Home</div>
+          <div class="mx-2 text-amber-200 hover:text-teal-100">About</div>
+          <a href="{% url 'Dashboard' %}">
+            <div class="mx-2 text-amber-200 hover:text-teal-100">Dasboard</div>
+          </a>
+          <div class="mx-2 text-amber-200 hover:text-teal-100">Contact</div>
+            
+        </div>
+
+    </div>
+    
+
+<!-- img n search bar -->
+<div class="relative w-[1400px] mx-auto h-[400px] my-4 ">
+<!-- img -->
+  <img src="{% static 'images/mainn.jpg' %}" alt="Event Background" class="blur-[1] w-full h-full absolute inset-0 object-cove shadow-amber-400/30 shadow-lg">
+
+<!-- inner body -->
+ <div class=" absolute inset-0  flex  flex-col justify-center items-center space-y-5  border-2  border-black border-dashed">
+  <!-- text -->
+  <h1 class=" font-bold italic
+     text-5xl text-slate-950 hover:text-neutral-800 ">Search Your Event Here</h1>
+      
+     <!-- search bar -->
+      <form action="{% url 'search' %}" method="get">
+    <div class="   w-[500px] h-10 bg-neutral-300 rounded-2xl shadow-xl/30 mb-1 ">
+        <input type="text" placeholder="EVENTS OR LOCATION " name="q" class="outline-none  w-full h-full  px-4 text-slate-950 rounded-2xl">
+    </div>
+
+     <!-- button -->
+     <button class=" w-[100px] h-10 rounded-2xl inset-shadow-sm 
+     inset-shadow-amber-300 bg-neutral-300 text-slate-950 hover:bg-amber-100 cursor-pointer font-medium text-lg">
+      Search
+    </button>
+  </form>
+  
+</div>
+</div>
+    <div class="flex justify-center items-center">
+    <h2 class=" font-serif text-2xl font-bold text-amber-500 underline pb-1 pt-6">Searched Results For.."{{query}}"..</h2>
+    </div>
+
+    <div class="bg-gray-950 w-[1400px] h-full mt-4  grid grid-cols-3 gap-6 mx-auto">
+    {% for events in eventss %}
+
+    <div class="w-[400px] h-[450px] my-10 p-4 mx-6 bg-zinc-900 rounded-2xl border-2 border-black shadow-amber-500/30 shadow-lg space-x-5 hover:bg-neutral-800 ">
+
+    <img src="{% static 'images/' %}{{ events.id }}.jpg " class="w-full h-60 object-cover rounded-2xl  shadow-amber-400/30 shadow-lg">
+ 
+    <h2 class="w-full font-serif text-2xl font-bold text-amber-500 pt-3">{{events.name}}</h2>
+    <h1 class="w-full font-serif text-lg font-semibold  text-amber-500">Date :{{events.date}}</h1>
+    <h1 class="w-full font-serif text-lg font-semibold  text-amber-500 ">Catagory :{{events.catagory}}</h1>
+
+<a href="{% url 'detail_View' events.id %}">
+    <button class="w-[100px] h-8 rounded-2xl inset-shadow-sm  
+     inset-shadow-amber-300 bg-neutral-300 text-slate-950 hover:bg-amber-100 cursor-pointer font-serif font-medium text-lg mt-4">
+      Details
+    </button>
+    </a>
+</div>
+
+{% empty %}
+<div class="flex justify-center items-center">
+    <h2 class=" font-serif text-2xl font-bold text-amber-500 pb-1 pt-6">NO EVENTS FOUND</h2>
+    </div>
+{% endfor %}
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,110 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Event Details</title>
+   <link href="{% static "css/output.css" %}" rel="stylesheet">
+</head>
+<body class="bg-gray-950 w-[1400px] h-full mt-4 flex justify-center items-center">
+    <div class="w-[700px] h-full my-10 p-10 mx-6 bg-zinc-900 rounded-2xl border-2 border-black
+     shadow-amber-500/30 shadow-lg space-x-5 hover:bg-neutral-800 ">
+     <h2 class="w-full font-serif text-2xl font-bold text-amber-500 flex justify-center items-center pb-10">DETAILS OF THIS EVENT</h2>
+
+     <h2 class="w-full font-serif text-xl font-bold text-amber-500 ">Event Name-->>{{events.name}}</h2>
+
+    <h2 class="w-full font-serif text-xl font-bold text-amber-500 ">Event Description-->>{{events.description}}</h2>
+    <h2 class="w-full font-serif text-xl font-bold text-amber-500 ">Event Date-->>{{events.date}}</h2>
+    <h2 class="w-full font-serif text-xl font-bold text-amber-500 ">Event Time-->>{{events.time|time:"H:i"}}</h2>
+    <h2 class="w-full font-serif text-xl font-bold text-amber-500 pb-20">Event Location-->>{{events.location}}</h2>
+
+
+    <h2 class="w-full font-serif text-xl font-bold text-amber-500 ">Event Catagory-->>{{events.catagory}}</h2>
+    <h2 class="w-full font-serif text-xl font-bold text-amber-500 pb-20 ">Event Catagory Description-->>{{events.catagory.description}}</h2>
+
+    <h2 class="w-full font-serif text-xl font-bold text-amber-500 ">Participants-->>{{countt}}</h2>
+    <ul class="list-disc marker:text-amber-500">
+    {% for par in  events.participents.all  %}
+    <li>
+            <h2 class="w-full font-serif text-xl font-bold text-amber-500 ">{{par.name}} ({{par.email}})</h2>
+            
+    </li>
+    {% endfor %}
+</ul>
+
+<div class="grid grid-cols-6  gap-2 w-full ">
+   <a href="{% url 'create_event' %}">
+        <button class="w-[100px] h-10 rounded-2xl inset-shadow-sm  
+     inset-shadow-amber-300 bg-neutral-300 text-slate-950 hover:bg-amber-100 cursor-pointer font-serif font-medium text-sm mt-4">
+      Add Event
+    </button>
+    </a>
+    
+   <a href="{% url 'update_event' events.id %}">
+    <button class="w-[100px] h-10 rounded-2xl inset-shadow-sm  
+     inset-shadow-amber-300 bg-neutral-300 text-slate-950 hover:bg-amber-100 cursor-pointer font-serif font-medium text-sm mt-4">
+      Update Event
+    </button>
+    </a>
+    
+
+
+    <a href="{% url 'create_catagory' %}">
+    <button class="w-[100px] h-10 rounded-2xl inset-shadow-sm  
+     inset-shadow-amber-300 bg-neutral-300 text-slate-950 hover:bg-amber-100 cursor-pointer font-serif font-medium text-sm mt-4">
+      Add Catagory
+    </button>
+    </a>
+    <a href="{% url 'update_catagory' events.id %}">
+    <button class="w-[100px] h-10 rounded-2xl inset-shadow-sm  
+     inset-shadow-amber-300 bg-neutral-300 text-slate-950 hover:bg-amber-100 cursor-pointer font-serif font-medium text-sm mt-4">
+      Update Catagory
+    </button>
+    </a>
+    <a href="{% url 'create-participant' %}">
+    <button class="w-[100px] h-10 rounded-2xl inset-shadow-sm  
+     inset-shadow-amber-300 bg-neutral-300 text-slate-950 hover:bg-amber-100 cursor-pointer font-serif font-medium text-sm mt-4">
+      Add Participant
+    </button>
+    </a>
+
+    <form action="{% url 'delete-event' events.id  %}" method="POST">
+    {% csrf_token %}
+    <button class="w-[100px] h-10 rounded-2xl inset-shadow-sm  
+     inset-shadow-amber-300 bg-neutral-300 text-slate-950 hover:bg-amber-100 cursor-pointer font-serif font-medium text-sm mt-4">
+      Delete Event
+    </button>
+  </form>
+
+</div>
+
+
+<a href="{% url 'homepage' %}">
+    <button class="w-[100px] h-8 rounded-2xl inset-shadow-sm  
+     inset-shadow-amber-300 bg-neutral-300 text-slate-950 hover:bg-amber-100 cursor-pointer font-serif font-medium text-lg mt-4">
+      BACK
+    </button>
+    </a>
+    
+
+
+
+
+
+
+
+       
+
+
+
+    </div>
+
+
+
+
+
+
+
+</body>
+</html>
