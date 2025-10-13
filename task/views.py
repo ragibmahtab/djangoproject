@@ -41,7 +41,7 @@ def Dashboard(request):
     
     count_event=events.aggregate(
         total=Count('id'),
-        upcoming=Count('id',filter=Q(date__gte=date.today())),
+        upcoming=Count('id',filter=Q(date__gt=date.today())),
         past=Count('id',filter=Q(date__lt=date.today())),
         todays=Count('id',filter=Q(date=date.today())),
     )
@@ -49,7 +49,7 @@ def Dashboard(request):
 
 
     if type=='UPcoming Events':
-        events=events.filter(date__gte=date.today())
+        events=events.filter(date__gt=date.today())
     elif type=='Past Events':
         events=events.filter(date__lt=date.today())
     elif type=='Todays Events':
