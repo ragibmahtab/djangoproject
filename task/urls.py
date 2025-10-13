@@ -3,7 +3,7 @@ from task.views import Homepage,Dashboard,create_event,create_participant,create
 
 
 urlpatterns = [
-    path('Homepage/',Homepage,name="homepage"),
+    path('',Homepage,name="homepage"),
     path('Dashboard/',Dashboard,name="Dashboard"),
     path('create_event/',create_event,name="create_event"),
     path('update_event/<int:id>/',update_event,name="update_event"),
