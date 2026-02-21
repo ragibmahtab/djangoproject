@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 import dj_database_url 
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -41,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'task',
+    'user',
     "debug_toolbar",
 
     
@@ -92,27 +94,27 @@ WSGI_APPLICATION = 'event_managment.wsgi.application'
 # }
 
 
-#for postgresql
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'event_management',
-#         'USER': 'postgres',
-#         'PASSWORD': 'oyon4948',
-#         'HOST': 'localhost',
-#         'PORT': '5432'
-#     }
-# }
-
-
-
+# for postgresql
 DATABASES = {
-    'default': dj_database_url.config(
-        # Replace this value with your local database's connection string.
-        default='postgresql://event_management_db_mf8g_user:or9YJqSZHXjDI3qyPyfUewiztOTZ9Uqb@dpg-d3m1nf6mcj7s73abev50-a.oregon-postgres.render.com/event_management_db_mf8g',
-        conn_max_age=600
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'event_management',
+        'USER': 'postgres',
+        'PASSWORD': 'oyon4948',
+        'HOST': 'localhost',
+        'PORT': '5432'
+    }
 }
+
+
+
+# DATABASES = {
+#     'default': dj_database_url.config(
+#         # Replace this value with your local database's connection string.
+#         default='postgresql://event_management_db_mf8g_user:or9YJqSZHXjDI3qyPyfUewiztOTZ9Uqb@dpg-d3m1nf6mcj7s73abev50-a.oregon-postgres.render.com/event_management_db_mf8g',
+#         conn_max_age=600
+#     )
+# }
 
 
 # Password validation
@@ -166,3 +168,20 @@ INTERNAL_IPS = [
     "127.0.0.1",
     # ...
 ]
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+LOGIN_URL = '/login/'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'khanumalpona@gmail.com'
+EMAIL_HOST_PASSWORD = 'xbuvmkkdqwapttwl'
+DEFAULT_FROM_EMAIL = 'khanumalpona@gmail.com'
+
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

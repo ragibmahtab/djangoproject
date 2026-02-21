@@ -1,31 +1,21 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Event Form</title>
-    <link rel="stylesheet" href="{% static 'css/output.css' %}">
-</head>
-<body class="w-[1000px] mx-auto my-10 bg-gray-950  h-full ">
-    <div class="w-1/2 mx-auto px-10 py-10 mt-20 bg-amber-400 border-2 border-solid inset-shadow-sm inset-shadow-amber-500 shadow-amber-500/30 shadow-lg border-black ">
-        <div>
-            {% if messages %}
-            {% for message in messages  %}
-                {{message}}
-            {% endfor %}
-            {% endif %}
-        </div>
-        <Form method="POST">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="
-            w-[100px] h-8 rounded-2xl inset-shadow-sm
-     inset-shadow-amber-300 bg-neutral-300 text-slate-950 hover:bg-amber-100 cursor-pointer font-medium text-lg">Submit</button>
-     
+{% extends 'base.html' %}
+{% block title %}Event Form{% endblock %}
 
-        </form>
-    </div>
-    
-</body>
-</html>
+{% block content %}
+
+<div class="w-[600px] mx-auto bg-zinc-900 p-8 rounded-2xl mt-10">
+
+<h2 class="text-2xl font-bold mb-4 text-center">Event Form</h2>
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button class="bg-amber-400 text-black px-6 py-2 rounded-xl mt-4">
+        Submit
+    </button>
+</form>
+
+</div>
+
+{% endblock %}

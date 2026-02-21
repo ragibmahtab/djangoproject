@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}Organizer Dashboard{% endblock %}
+
+{% block content %}
+
+<div class="w-[1400px] mx-auto my-10">
+
+<h1 class="text-3xl font-bold text-center mb-6">Organizer Dashboard</h1>
+
+<a href="{% url 'create_event' %}">
+<button class="bg-amber-400 text-black px-6 py-2 rounded-xl mb-4 hover:bg-amber-300">
+Create Event
+</button>
+</a>
+
+<div class="grid grid-cols-3 gap-6">
+
+{% for event in events %}
+<div class="bg-zinc-900 p-4 rounded-2xl">
+    <h2 class="text-xl font-bold">{{ event.name }}</h2>
+    <p>{{ event.date }}</p>
+
+    <a href="{% url 'update_event' event.id %}" class="text-amber-300">Edit</a>
+</div>
+{% endfor %}
+
+</div>
+
+</div>
+
+{% endblock %}
