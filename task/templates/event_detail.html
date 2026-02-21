@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %}Event Details{% endblock %}
+
+{% block content %}
+
+<div class="w-[800px] mx-auto bg-zinc-900 p-8 rounded-2xl shadow-amber-500/30 shadow-lg">
+
+<h2 class="text-3xl font-bold mb-6 text-center">EVENT DETAILS</h2>
+
+<img src="{{ event.image.url }}" class="w-full h-80 object-cover rounded-2xl mb-6">
+
+<p><strong>Name:</strong> {{ event.name }}</p>
+<p><strong>Description:</strong> {{ event.description }}</p>
+<p><strong>Date:</strong> {{ event.date }}</p>
+<p><strong>Time:</strong> {{ event.time }}</p>
+<p><strong>Location:</strong> {{ event.location }}</p>
+<p><strong>Category:</strong> {{ event.catagory }}</p>
+
+<hr class="my-6 border-amber-400">
+
+<h3 class="text-xl font-bold">RSVP Users ({{ event.rsvp_users.count }})</h3>
+
+<ul class="list-disc ml-6">
+    {% for user in event.rsvp_users.all %}
+        <li>{{ user.first_name }} {{ user.last_name }} ({{ user.email }})</li>
+    {% empty %}
+        <li>No RSVP yet</li>
+    {% endfor %}
+</ul>
+
+{% if user.is_authenticated and user.groups.all.0.name == "Participant" %}
+<a href="{% url 'rsvp_event' event.id %}">
+    <button class="bg-amber-400 text-black px-6 py-2 rounded-xl mt-6 hover:bg-amber-300">
+        RSVP Now
+    </button>
+</a>
+{% endif %}
+
+</div>
+
+{% endblock %}
