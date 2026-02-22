@@ -109,7 +109,7 @@ WSGI_APPLICATION = 'event_managment.wsgi.application'
 DATABASES = {
     'default': dj_database_url.config(
         # Replace this value with your local database's connection string.
-        default='postgresql://event_management_db_mf8g_user:or9YJqSZHXjDI3qyPyfUewiztOTZ9Uqb@dpg-d3m1nf6mcj7s73abev50-a.oregon-postgres.render.com/event_management_db_mf8g',
+        default='postgresql://event_management_db_4mky_user:u1KoUbusbHZhOlXomh6FG5H2hMSpqnSf@dpg-d6dd91q4d50c73anbe20-a.oregon-postgres.render.com/event_management_db_4mky',
         conn_max_age=600
     )
 }
@@ -166,3 +166,26 @@ INTERNAL_IPS = [
     "127.0.0.1",
     # ...
 ]
+
+import os
+from pathlib import Path
+
+# ADD THESE for static files
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # ← ADD THIS
+
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
+
+# ADD THESE for media files
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# ADD whitenoise to MIDDLEWARE (2nd line)
+# MIDDLEWARE = [
+#     'django.middleware.security.SecurityMiddleware',
+#     'whitenoise.middleware.WhiteNoiseMiddleware',  # ← ADD THIS
+#     'django.contrib.sessions.middleware.SessionMiddleware',
+#     ...
+# ]
