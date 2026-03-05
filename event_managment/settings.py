@@ -104,13 +104,13 @@ EMAIL_HOST_PASSWORD = 'xbuvmkkdqwapttwl'
 DEFAULT_FROM_EMAIL = 'khanumalpona@gmail.com'
 
 ALLOWED_HOSTS = [
-    'djangoprojectass-2.onrender.com',
+    '.onrender.com',
     'localhost',
     '127.0.0.1',
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://djangoprojectass-2.onrender.com',
+    'https://*.onrender.com',
 ]
 
 AUTH_USER_MODEL = 'user.CustomUser'
