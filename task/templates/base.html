@@ -18,6 +18,7 @@
         <a href="{% url 'homepage' %}" class="hover:text-amber-200">Home</a>
 
         {% if user.is_authenticated %}
+            <a href="{% url 'user_profile' %}" class="hover:text-amber-200">Profile</a>
             <a href="{% url 'logout' %}" class="hover:text-amber-200">Logout</a>
         {% else %}
             <a href="{% url 'login' %}" class="hover:text-amber-200">Login</a>

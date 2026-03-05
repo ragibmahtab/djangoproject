@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}User Profile{% endblock %}
+
+{% block content %}
+<div class="max-w-2xl mx-auto p-6">
+    <div class="bg-white rounded-lg shadow-md p-8">
+        <h1 class="text-3xl font-bold text-gray-800 mb-8">My Profile</h1>
+
+        <!-- Profile picture -->
+        <div class="flex items-center mb-6">
+            {% if profile_user.profile_picture %}
+                <img src="{{ profile_user.profile_picture.url }}" alt="Profile" class="w-24 h-24 rounded-full object-cover border-2 border-gray-200">
+            {% else %}
+                <div class="w-24 h-24 rounded-full bg-gray-200 flex items-center justify-center text-gray-500">
+                    <span class="text-xl">{{ profile_user.first_name|default:'?'|slice:":1" }}{{ profile_user.last_name|default:'?'|slice:":1" }}</span>
+                </div>
+            {% endif %}
+            <div class="ml-4">
+                <p class="text-lg font-semibold">{{ profile_user.get_full_name|default:profile_user.username }}</p>
+                <p class="text-sm text-gray-600">{{ profile_user.email }}</p>
+            </div>
+        </div>
+
+        <!-- Basic information -->
+        <div class="space-y-4">
+            <p><strong>Username:</strong> {{ profile_user.username }}</p>
+            <p><strong>First name:</strong> {{ profile_user.first_name }}</p>
+            <p><strong>Last name:</strong> {{ profile_user.last_name }}</p>
+            <p><strong>Email:</strong> {{ profile_user.email }}</p>
+            <p><strong>Phone:</strong> {{ profile_user.phone_number|default:'Not provided' }}</p>
+        </div>
+
+        <div class="flex gap-4 pt-6">
+            <a href="{% url 'edit_profile' %}" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg transition duration-200">
+                Edit Profile
+            </a>
+            <a href="{% url 'password_change' %}" class="bg-gray-500 hover:bg-gray-600 text-white px-6 py-2 rounded-lg transition duration-200">
+                Change Password
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

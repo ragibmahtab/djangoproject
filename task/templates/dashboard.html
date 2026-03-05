@@ -1,13 +1,6 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard</title>
-  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-</head>
-<body class="bg-gray-950 ">
+{% extends 'base.html' %}
+{% block title %}Organizer Dashboard{% endblock %}
+{% block content %}
 
     <!-- navber -->
      <div class="w-[1400px] mx-auto my-4 p-8 flex justify-center items-center hover:bg-neutral-800
@@ -117,5 +110,4 @@
 
 
 
-</body>
-</html>
+{% endblock %}

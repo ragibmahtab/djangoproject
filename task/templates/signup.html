@@ -7,6 +7,12 @@
 
   <h2 class="text-2xl font-bold text-center mb-6">Create Account</h2>
 
+  {% if messages %}
+    {% for message in messages %}
+      <p class="text-{{ message.tags }}-800 font-bold text-center mb-4">{{ message }}</p>
+    {% endfor %}
+  {% endif %}
+
   {% if message %}
     <p class="text-green-800 font-bold text-center mb-4">{{ message }}</p>
   {% endif %}
